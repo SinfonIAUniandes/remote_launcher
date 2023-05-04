@@ -1,6 +1,8 @@
 
 #!/bin/bash
 
+. ./config.cfg
+
 export PEPPER_IP=192.168.0.111
 export PEPPER_USER=nao
 export PEPPER_PASSWORD=nao
@@ -11,13 +13,12 @@ export ROS_IP=$(hostname -I | awk '{print $1}')
 
 
 export LAUNCH_TOOLKIT="
-export PEPPER_IP=192.168.0.111
-echo prueba &&
-./gentoo/startprefix /bin/bash -c 'cd && echo hola &&
-. startRos.sh &&
-. start_robot_toolkit_wlan.sh &'
+echo prueba
+./gentoo/startprefix
+echo hola
+. startRos.sh
+. start_robot_toolkit_wlan.sh &
 "
-
 
 
 # Encode the config.cfg content in base64
@@ -38,3 +39,23 @@ read -p 'Press enter to close the terminal...'
 gnome-terminal -- bash -c "$LAUNCH_REMOTE"
 
 echo "Done!"
+
+
+"if [[ ! -x $SHELL ]] ; then
+        echo "Failed to find the Prefix shell, this is probably" > /dev/stderr
+        echo "because you didn't emerge the shell ${SHELL##*/}" > /dev/stderr
+        exit -1
+fi
+
+# give a small notice
+echo "Entering Gentoo Prefix ${EPREFIX}"
+# start the login shell, clean the entire environment but what's needed
+RETAIN="HOME=$HOME TERM=$TERM USER=$USER SHELL=$SHELL"
+# PROFILEREAD is necessary on SUSE not to wipe the env on shell start
+[[ -n ${PROFILEREAD} ]] && RETAIN+=" PROFILEREAD=$PROFILEREAD"
+# ssh-agent is handy to keep, of if set, inherit it
+[[ -n ${SSH_AUTH_SOCK} ]] && RETAIN+=" SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
+# if we're on some X terminal, makes sense to inherit that too
+[[ -n ${DISPLAY} ]] && RETAIN+=" DISPLAY=$DISPLAY"
+# do it!
+env -i $RETAIN $SHELL -l"
