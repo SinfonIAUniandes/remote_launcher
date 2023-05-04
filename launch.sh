@@ -12,12 +12,12 @@ export ROS_IP=$(hostname -I | awk '{print $1}')
 
 export LAUNCH_TOOLKIT="
 export PEPPER_IP=192.168.0.111
-echo prueba
-./gentoo/startprefix
-echo hola
-. startRos.sh
-. start_robot_toolkit_wlan.sh &
+echo prueba &&
+./gentoo/startprefix /bin/bash -c 'cd && echo hola &&
+. startRos.sh &&
+. start_robot_toolkit_wlan.sh &'
 "
+
 
 
 # Encode the config.cfg content in base64
