@@ -26,8 +26,8 @@ echo "Connecting to Pepper..."
 
 
 export LAUNCH_REMOTE="
-. $REMOTE_CONTRLLER_WS_PATH/devel/setup.bash &&
-rosrun remote_controller remote_controller &&
+. $REMOTE_CONTRLLER_WS_PATH/devel/setup.bash ;
+rosrun remote_controller remote_controller ;
 read -p 'Press enter to close the terminal...'
 "
 
