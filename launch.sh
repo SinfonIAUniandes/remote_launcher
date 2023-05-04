@@ -1,28 +1,32 @@
 
 #!/bin/bash
 
-. ./config.cfg
+export PEPPER_IP=192.168.0.111
+export PEPPER_USER=nao
+export PEPPER_PASSWORD=nao
+export REMOTE_CONTROLLER_WS_PATH="sinfonia_ws"
 
 export ROS_MASTER_URI=http://$PEPPER_IP:11311
 export ROS_IP=$(hostname -I | awk '{print $1}')
 
 
 export LAUNCH_TOOLKIT="
-source <(echo \"$REMOTE_CONFIG\") &&
-./gentoo/startprefix &&
-cd &&
-. startRos.sh &&
-. start_robot_toolkit_wlan.sh
+export PEPPER_IP=192.168.0.111
+echo prueba
+./gentoo/startprefix
+echo hola
+. startRos.sh
+. start_robot_toolkit_wlan.sh &
 "
 
+
 # Encode the config.cfg content in base64
-REMOTE_CONFIG=$(base64 < config.cfg)
 
 echo "The IP of Pepper is: $PEPPER_IP - $ROS_MASTER_URI"
 echo "The IP of this computer is: $ROS_IP"
 
 echo "Connecting to Pepper..."
-# sshpass -p "$PEPPER_PASSWORD" ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $PEPPER_USER@$PEPPER_IP "REMOTE_CONFIG=$REMOTE_CONFIG; $LAUNCH_TOOLKIT"
+sshpass -p "$PEPPER_PASSWORD" ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $PEPPER_USER@$PEPPER_IP "$LAUNCH_TOOLKIT"
 
 
 export LAUNCH_REMOTE="
