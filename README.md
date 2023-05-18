@@ -4,4 +4,4 @@
 
 Bash scripts to launch remote_controller easily.
 
-## [How to use](https://sinfoniauniandes.github.io/remote_launcher/
+## [How to use](https://sinfoniauniandes.github.io/remote_launcher/)
