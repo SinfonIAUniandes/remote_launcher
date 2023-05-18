@@ -1,3 +1,7 @@
 ![](https://sinfoniauniandes.github.io/images/logo.png)
 
-# [Como lanzar el control remoto de Opera/Nova](./launch/)
+# remote_launcher
+
+Bash scripts to launch remote_controller easily.
+
+## [How to use](https://sinfoniauniandes.github.io/remote_launcher/
