@@ -1,0 +1,20 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2023-05-18T10:39:37-05:00",
+  "id": "launch",
+  "duration": 4,
+  "title": "Como lanzar el control remoto de Opera/Nova",
+  "summary": "Tutorial de como conectarse al robot y lanzar el control remoto desde la terminal.",
+  "source": "launch.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": null,
+  "tags": [],
+  "feedback": "https://github.com/SinfonIAUniandes/remote_launcher/issues/new",
+  "url": "launch"
+}
